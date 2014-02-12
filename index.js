@@ -3,7 +3,8 @@ var express = require('express'),
     connect = require('connect'),
     sessions = [];
 
-app.use(connect.json());
+app.use(express.json());
+app.use(express.urlencoded());
 
 function addHeaders(res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -24,6 +25,7 @@ app.options('/sessions', function(req, res) {
 });
 
 app.post('/sessions', function(req, res) {
+  console.log(req.body);
   sessions.push(req.body);
   res = addHeaders(res);
   res.end();
@@ -35,10 +37,12 @@ app.delete('/sessions', function(req, res) {
 });
 
 app.get('*', function(req, res) {
+  console.log(req.url);
   res.end('404 - route not implemented.  Only GET/POST on /sessions defined.');
 });
 
 app.post('*', function(req, res) {
+  console.log(req.url);
   res.end('404 - route not implemented.  Only GET/POST on /sessions defined.');
 });
 
