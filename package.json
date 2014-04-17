@@ -2,5 +2,7 @@
   "dependencies": {
     "connect": "latest"
     , "express" : "latest"
+    , "mustache": "latest"
+    , "body-parser": "latest"
   }
 }

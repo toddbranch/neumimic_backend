@@ -1,10 +1,32 @@
 var express = require('express'),
     app = express(),
-    connect = require('connect'),
-    sessions = [];
+    bodyParser = require('body-parser'),
+    mustache = require('mustache'),
+    fs = require('fs'),
+    sessions = [{
+        "user": "Josh",
+        "exercise": "temp",
+        "year": 2014,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minutes": 9,
+        "difficulty": [
+              0.5
+            ],
+        "performance": [
+              1
+            ]
+      }];
 
-app.use(express.json());
-app.use(express.urlencoded());
+head = fs.readFileSync('views/head.html', {encoding: 'ascii'})
+foot = fs.readFileSync('views/foot.html', {encoding: 'ascii'})
+view = fs.readFileSync('views/view.html', {encoding: 'ascii'})
+result = mustache.render(view, {sessions: sessions, head: head, foot: foot})
+
+console.log(result)
+
+app.use(bodyParser())
 
 function addHeaders(res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -35,6 +57,22 @@ app.post('/sessions', function(req, res) {
 app.delete('/sessions', function(req, res) {
   res.end();
 });
+
+// example of page generated on server
+
+app.get('/view', function(req, res) {
+  res = addHeaders(res);
+  //res.json(sessions);
+  // ADD TEMPLATING HERE!
+  res.end();
+});
+
+app.options('/view', function(req, res) {
+  res = addHeaders(res);
+  res.end();
+});
+
+// catch-all route
 
 app.get('*', function(req, res) {
   console.log(req.url);
