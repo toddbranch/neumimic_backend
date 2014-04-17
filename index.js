@@ -21,10 +21,6 @@ var express = require('express'),
 
 head = fs.readFileSync('views/head.html', {encoding: 'ascii'})
 foot = fs.readFileSync('views/foot.html', {encoding: 'ascii'})
-view = fs.readFileSync('views/view.html', {encoding: 'ascii'})
-result = mustache.render(view, {sessions: sessions, head: head, foot: foot})
-
-console.log(result)
 
 app.use(bodyParser())
 
@@ -67,8 +63,8 @@ app.delete('/sessions', function(req, res) {
 
 app.get('/view', function(req, res) {
   res = addHeaders(res);
-  //res.json(sessions);
-  // ADD TEMPLATING HERE!
+  view = fs.readFileSync('views/view.html', {encoding: 'ascii'})
+  result = mustache.render(view, {sessions: sessions, head: head, foot: foot})
   res.end();
 });
 
