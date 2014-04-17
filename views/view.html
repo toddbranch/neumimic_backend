@@ -1,16 +1,18 @@
 {{{head}}}
 {{#sessions}}
 <table class="table table-striped table-bordered">
+  <div>{{user}}</div>
+  <div>{{exercise}}</div>
   <tr>
-    <td align="center">Difficulty</td>
+    <td>Difficulty</td>
     {{#difficulty}}
-    <td align="center">{{.}}</td>
+    <td>{{.}}</td>
     {{/difficulty}}
   </tr>
   <tr>
-    <td align="center">Performance</td>
+    <td>Performance</td>
     {{#performance}}
-    <td align="center">{{.}}</td>
+    <td>{{.}}</td>
     {{/performance}}
   </tr>
 </table>

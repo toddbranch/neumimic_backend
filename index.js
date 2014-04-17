@@ -43,7 +43,6 @@ app.options('/sessions', function(req, res) {
 });
 
 app.post('/sessions', function(req, res) {
-  console.log(req.body);
   sessions.push(req.body);
   res = addHeaders(res);
   res.end();
@@ -65,7 +64,7 @@ app.get('/view', function(req, res) {
   res = addHeaders(res);
   view = fs.readFileSync('views/view.html', {encoding: 'ascii'})
   result = mustache.render(view, {sessions: sessions, head: head, foot: foot})
-  res.end();
+  res.end(result);
 });
 
 app.options('/view', function(req, res) {
@@ -76,12 +75,10 @@ app.options('/view', function(req, res) {
 // catch-all route
 
 app.get('*', function(req, res) {
-  console.log(req.url);
   res.end('404 - route not implemented.  Only GET/POST on /sessions defined.');
 });
 
 app.post('*', function(req, res) {
-  console.log(req.url);
   res.end('404 - route not implemented.  Only GET/POST on /sessions defined.');
 });
 
