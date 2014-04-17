@@ -53,6 +53,11 @@ app.post('/sessions', function(req, res) {
   res.end();
 });
 
+app.post('/test', function(req, res) {
+    var name = req.body.name,
+        color = req.body.color;
+});
+
 // to be implemented
 app.delete('/sessions', function(req, res) {
   res.end();
