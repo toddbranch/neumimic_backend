@@ -1,20 +1,30 @@
 {{{head}}}
 {{#sessions}}
 <table class="table table-striped table-bordered">
-  <div>{{user}}</div>
-  <div>{{exercise}}</div>
   <tr>
+    <td>User</td>
+    <td>Exercise</td>
+    <td>Year</td>
+    <td>Month</td>
+    <td>Day</td>
+    <td>Hour</td>
+    <td>Minutes</td>
     <td>Difficulty</td>
-    {{#difficulty}}
-    <td>{{.}}</td>
-    {{/difficulty}}
-  </tr>
-  <tr>
     <td>Performance</td>
-    {{#performance}}
-    <td>{{.}}</td>
-    {{/performance}}
   </tr>
+  {{#repetitions}}
+  <tr>
+    <td>{{user}}</td>
+    <td>{{exercise}}</td>
+    <td>{{year}}</td>
+    <td>{{month}}</td>
+    <td>{{day}}</td>
+    <td>{{hour}}</td>
+    <td>{{minutes}}</td>
+    <td>{{difficulty}}</td>
+    <td>{{performance}}</td>
+  </tr>
+  {{/repetitions}}
 </table>
 {{/sessions}}
 </table>

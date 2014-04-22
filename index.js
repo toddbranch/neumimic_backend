@@ -12,9 +12,13 @@ var express = require('express'),
         "hour": 8,
         "minutes": 9,
         "difficulty": [
+              0.5,
+              0.5,
               0.5
             ],
         "performance": [
+              1,
+              1,
               1
             ]
       }];
@@ -61,6 +65,17 @@ app.delete('/sessions', function(req, res) {
 // example of page generated on server
 
 app.get('/view', function(req, res) {
+  for (index in sessions) {
+    sessions[index].repetitions = []
+
+    for (rep in sessions[index].difficulty) {
+      sessions[index].repetitions.push(
+        {'difficulty': sessions[index].difficulty[rep],
+        'performance': sessions[index].performance[rep]}
+      )
+    }
+  }
+    
   res = addHeaders(res);
   view = fs.readFileSync('views/view.html', {encoding: 'ascii'})
   result = mustache.render(view, {sessions: sessions, head: head, foot: foot})
