@@ -12,10 +12,33 @@ var express = require('express'),
         "hour": 8,
         "minutes": 9,
         "difficulty": [
+              0.5,
+              0.5,
               0.5
             ],
         "performance": [
-              1
+              1,
+              0.90,
+              0.92
+            ]
+      }
+      {
+        "user": "Josh2",
+        "exercise": "temp2",
+        "year": 2014,
+        "month": 4,
+        "day": 10,
+        "hour": 8,
+        "minutes": 9,
+        "difficulty": [
+              0.5,
+              0.4,
+              0.5
+            ],
+        "performance": [
+              1,
+              0.95,
+              0.92
             ]
       }];
 
